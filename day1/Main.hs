@@ -8,15 +8,22 @@ import System.IO (hGetContents, stdin)
 input :: IO IS.IntSet
 input = IS.fromList . map read . lines <$> hGetContents stdin
 
+solve :: IS.IntSet -> [IS.Key]
+solve is = do
+  a <- IS.toAscList is
+  b <- IS.toAscList is
+  guard $ a < b
+  let c = 2020 - (a + b)
+  guard $ b < c
+  guard $ IS.member c is
+  return $ a * b * c
+
 main :: IO ()
-main = do
-  is <- input
-  let r = do
-        a <- IS.toAscList is
-        b <- IS.toAscList is
-        guard $ a < b
-        let c = 2020 - (a + b)
-        guard $ b < c
-        guard $ IS.member c is
-        return $ a * b * c
-  print r
+main =
+  input >>= return . solve >>= showSolution
+  where
+    showSolution []  = putStrLn "No solution found."
+    showSolution [x] = print x
+    showSolution xs  = do
+      putStrLn "Multiple solutions found:"
+      mapM_ print xs
