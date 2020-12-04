@@ -24,3 +24,5 @@ The nix-shell includes the [haskell-language-server](https://github.com/haskell/
 which integrates fairly nicely with `nvim`, and VSCode using the
 [vscode-haskell](https://github.com/haskell/vscode-haskell) and
 [nix-env-selector](https://github.com/arrterian/nix-env-selector) extensions.
+
+![haskell-ide-engine example](./images/haskell-ide-engine.png)
